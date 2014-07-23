@@ -1,0 +1,9 @@
+*.sw*
+*~
+build/
+bin/
+node_modules/
+vendor/
+bower_components/
+libpeerconnection.log
+.DS_Store
