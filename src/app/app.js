@@ -1,15 +1,16 @@
-angular.module( 'ngBoilerplate', [
+angular.module( 'wogger', [
   'templates-app',
   'templates-common',
-  'ngBoilerplate.home',
-  'ngBoilerplate.about',
+  'wogger.projects',
+  'wogger.config',
+  'wogger.timer',
   'ui.router',
-  'restangular',
-  'wogger.config'
+  'ui.bootstrap',
+  'restangular'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider, RestangularProvider, configuration ) {
-  $urlRouterProvider.otherwise( '/home' );
+  $urlRouterProvider.otherwise( '/timer' );
   RestangularProvider.setBaseUrl(configuration.apiUrl);
 })
 
@@ -19,7 +20,7 @@ angular.module( 'ngBoilerplate', [
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     if ( angular.isDefined( toState.data.pageTitle ) ) {
-      $scope.pageTitle = toState.data.pageTitle + ' | Logger' ;
+      $scope.pageTitle = toState.data.pageTitle + ' | Wogger' ;
     }
   });
 })
