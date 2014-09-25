@@ -1,0 +1,38 @@
+<div class="text-center">
+  <div class="panel-title">
+
+    <div class="header big-font">
+      <span class="red-line"></span>
+      <h1 class="header-text">
+        Login
+      </h1>
+      <span class="red-line"></span>
+    </div>
+
+  </div>
+
+  <div class="login-panel">
+
+    <form name="loginForm" class="login-form" ng-submit="login()" novalidate xt-form>
+
+        <input placeholder="Username" name="username" ng-model="username" type="email" required class="email-icon" xt-validate placement="right"/><br/>
+        <input type="password" placeholder="Passowrd" name="password" ng-model="password" required class="password-icon" xt-validate placement="right"/><br/>
+
+        <p class="option"><input type="checkbox" name="rememberMe" ng-model="rememberMe"/>Remember Me</p>
+
+        <div class="bottom-box">
+          <p><a href="#/forgot">Forgot Your Password?</a></p>
+          <button type="submit" class="redButton" ng-disabled="loginForm.$invalid">Sign In</button>
+          <div class="small-font">
+            <span class="gray-line"></span>
+            Or <a href="#/signup">Sign Up</a></p>
+            <span class="gray-line"></span>
+          </div>
+        </div>
+
+    </form>
+
+  </div>
+
+  <ng-include src="'login/messages.tpl.html'"/>
+</div>

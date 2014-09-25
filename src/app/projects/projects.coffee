@@ -1,18 +1,17 @@
-angular.module("wogger.projects", [
-  "ui.router"
+angular.module('wogger.projects', [
+  'ui.router'
 ]).config(config = ($stateProvider) ->
-  $stateProvider.state "projects",
-    url: "/projects"
+  $stateProvider.state 'user.projects',
+    url: '/projects'
     views:
       main:
-        controller: "ProjectsCtrl"
-        templateUrl: "projects/projects.tpl.html"
-
+        controller: 'ProjectsCtrl'
+        templateUrl: 'projects/projects.tpl.html'
     data:
-      pageTitle: "Projects"
+      pageTitle: 'Projects'
 
   return
-).controller "ProjectsCtrl", ProjectsCtrl = ($scope, Restangular) ->
+).controller 'ProjectsCtrl', ProjectsCtrl = ($scope, Restangular) ->
   projects = Restangular.one('projects')
   projects.get().then (projects) ->
     $scope.projects = projects.projects

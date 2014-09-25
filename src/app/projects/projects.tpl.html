@@ -1,8 +1,13 @@
 <div ng-controller="ProjectsCtrl">
-  <ul>
-    <li ng-repeat="project in projects">
-      <a>{{project}}</a>
-    </li>
-  </ul>
+  <table class="table">
+      <tbody>
+        <tr ng-repeat="project in projects">
+          <td><input type="checkbox"/></td>
+          <td>{{project.name}}</td>
+          <td>{{project.status}}</td>
+          <td>{{project.color}}</td>
+        </tr>
+      </tbody>
+    </table>
 </div>
 

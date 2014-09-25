@@ -1,18 +1,23 @@
-angular.module("wogger.timer", [
-  "ui.router"
+angular.module('wogger.timer', [
+  'ui.router'
 ]).config(config = ($stateProvider) ->
-  $stateProvider.state "timer",
-    url: "/timer"
+  $stateProvider.state 'user.timer',
+    url: '/timer'
     views:
       main:
-        controller: "TimerCtrl"
-        templateUrl: "timer/timer.tpl.html"
-
+        controller: 'TimerCtrl'
+        templateUrl: 'timer/timer.tpl.html'
     data:
-      pageTitle: "Timer"
+      pageTitle: 'Timer'
 
   return
-).controller "TimerCtrl", TimerCtrl = ($rootScope, $scope, Restangular, $modal) ->
+).controller 'TimerCtrl',
+TimerController = ($rootScope, $scope, Restangular, $modal) ->
   logs = Restangular.one('logs')
   logs.get().then (logs) ->
     $scope.logs = logs.logs
+  $scope.newLog = {}
+
+  $scope.createLog = ->
+    logs.post($scope.newLog).then (data)->
+      console.log(data)

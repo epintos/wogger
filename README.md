@@ -7,8 +7,8 @@ Time logger for different projects and teams
 Install Node.js and then:
 
 ```sh
-$ git clone git@github.com:Wolox/juryace.git
-$ cd juryace
+$ git clone git@github.com:epintos/wogger.git
+$ cd wogger
 $ sudo npm -g install grunt-cli karma bower
 $ npm install
 $ bower install

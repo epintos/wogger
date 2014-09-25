@@ -1,7 +1,42 @@
 <div ng-controller="TimerCtrl">
-  <ul>
-    <li ng-repeat="log in logs">
-      <a>{{log}}</a>
-    </li>
-  </ul>
+  <div class="row">
+  <div class="col-md-8">
+    <form name="logEntryForm" class="form-inline" ng-submit="createLog()">
+      <div class="form-group">
+        <input type="text" ng-model="newLog.description" class="form-control" placeholder="Description"/>
+      </div>
+      <div class="form-group">
+        <input type="text" ng-model="newLog.project_id" class="form-control" placeholder="Project"/>
+      </div>
+      <div class="form-group">
+        <input type="text" ng-model="newLog.time_seconds" class="form-control" value="0 sec"/>
+      </div>
+      <div class="form-group">
+        <input type="text" ng-model="newLog.time_from" class="form-control" placeholder="Description"/>
+      </div>
+      <div class="form-group">
+        <input type="text" ng-model="newLog.time_to" class="form-control" placeholder="Description"/>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input ng-model="newLog.billable" type="checkbox"/>
+        </label>
+      </div>
+      <input type="submit" class="btn btn-success" value="Start"/>
+    </form>
+  </div>
+  </div>
+  <div class="row">
+    <table class="table">
+      <tbody>
+        <tr ng-repeat="log in logs">
+          <td><input type="checkbox"/></td>
+          <td>{{log.description}}</td>
+          <td>{{log.project_id}}</td>
+          <td>{{log.time_seconds}}</td>
+          <td>{{log.time_from | date: 'shortTime' }} : {{log.time_to | date: 'shortTime'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

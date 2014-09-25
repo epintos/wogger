@@ -1,0 +1,28 @@
+<div class="navbar navbar-default">
+  <div class="navbar-header">
+    <div class="navbar-brand">
+      <a href ui-sref="user.timer">
+        Wogger
+      </a>
+    </div>
+  </div>
+  <div class="collapse navbar-collapse" collapse="menuCollapsed">
+    <ul class="nav navbar-nav">
+      <li ng-class="{active: isActive('/timer')}">
+        <a href="#/timer">Timer</a>
+      </li>
+      <li ng-class="{active: isActive('/projects')}">
+        <a href="#/projects">Projects</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right" ng-controller="LoginCtrl">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.first_name}} {{user.last_name}} <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#" ng-click="logout()">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+<div ui-view/>
