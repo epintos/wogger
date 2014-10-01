@@ -73,6 +73,7 @@ module.exports = {
       'vendor/angular-translate/angular-translate.js',
       'vendor/restangular/dist/restangular.js',
       'vendor/ngStorage/ngStorage.js',
+      'vendor/angular-parse/angular-parse.js'
     ],
     css: [
     ],

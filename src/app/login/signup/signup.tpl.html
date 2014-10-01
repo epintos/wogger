@@ -1,0 +1,17 @@
+<div class="text-center">
+  <h1>
+    Sign Up
+  </h1>
+  <form ng-hide="submitted" name="signUpForm" ng-submit="signup()" novalidate xt-form>
+    <input placeholder="Username" name="username" ng-model="username" required  xt-validate/><br/>
+    <input type="password" placeholder="Password" name="password" ng-model="password" xt-validate required pattern=".{6,}" password-strength/><br/>
+
+    <button type="button" go-click="/">Cancel</button>
+    <button type="submit" ng-disabled="signUpForm.$invalid">Submit</button>
+    <p>Have and account?<a href="#/login">Login</a></p>
+  </form>
+</div>
+
+  <ng-include src="'login/messages.tpl.html'"/>
+
+</div>

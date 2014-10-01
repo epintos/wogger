@@ -5,21 +5,28 @@ angular.module('wogger', [
   'wogger.config'
   'wogger.timer'
   'wogger.login'
+  'wogger.signup'
   'wogger.auth'
   'ui.router'
   'ui.bootstrap'
   'restangular'
   'ngStorage'
+  'Parse'
 ]).config(myAppConfig = ($stateProvider, $urlRouterProvider,
-                         $httpProvider, RestangularProvider, configuration) ->
+                         $httpProvider, RestangularProvider,
+                         configuration, ParseProvider) ->
   $httpProvider.responseInterceptors.push('httpInterceptor')
   $urlRouterProvider.otherwise('/timer')
   RestangularProvider.setBaseUrl(configuration.apiUrl)
+  ParseProvider.initialize(
+    'dHi2yhcugrWZaWrsRs51GUi5CT6SMZeEALQj8rLM',
+    'epxaxjelF2GK7xqHsKXmcukgYBuvWjOV8mwcR5IQ'
+  )
   return
 
 ).run(run = ($rootScope, $state, authorization) ->
   authorization.loadToken()
-  authorization.loadUser()  if $rootScope.token
+  authorization.loadUser() if $rootScope.token
   $rootScope.$on '$stateChangeStart', (event, toState,
                                        toParams, fromState, fromParams) ->
     if authorization.isLoggedIn() is toState.data.public

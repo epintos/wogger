@@ -15,7 +15,7 @@ angular.module('wogger.login', [
       public: true
   return
 ).controller "LoginCtrl", LoginController = ($rootScope, $scope, $location,
-authorization, userApi, $state) ->
+authorization, userApi, $state, Parse) ->
 
   $scope.logout = ->
     authorization.logout()
@@ -27,13 +27,16 @@ authorization, userApi, $state) ->
       username: this.username,
       password: this.password
 
-    success = (data) ->
-      authorization.setToken(data.token, $scope.rememberMe)
-      authorization.loadUser()
+    successLogin = (data) ->
+      authorization.setToken(data.sessionToken, $scope.rememberMe)
+      $rootScope.user = data
       $location.path('/')
 
     error = ->
       # TODO: apply user notification here..
       $scope.error = "Login Error"
 
-    userApi.login(credentials).success(success).error(error)
+    $rootScope.user = userApi.login(credentials).then (data)->
+      successLogin(data)
+    , (err) ->
+      error

@@ -1,17 +1,19 @@
-angular.module('wogger.api', []).factory 'userApi', ($http, configuration) ->
+angular.module('wogger.api', [])
+.factory 'userApi', ($http, configuration, Parse) ->
   url = configuration.apiUrl
 
   login: (credentials) ->
-    $http.post(url + '/login', credentials)
+    Parse.auth.login(credentials.username, credentials.password)
 
   getUser: (callback) ->
-    $http.get(url + '/users/me')
+    Parse.auth.resumeSession()
+    Parse.auth.currentUser
 
   forgotPassword: (data) ->
-    $http.post(url + '/login/forgotpassword', data)
+    # $http.post(url + '/login/forgotpassword', data)
 
   resetPassword: (token, password) ->
-    $http.post(url + '/login/forgotpassword/' + token, {password: password})
+    # $http.post(url + '/login/forgotpassword/' + token, {password: password})
 
   signup: (data) ->
-    $http.post(url + '/signup', data)
+    Parse.auth.register(data.username, data.password)

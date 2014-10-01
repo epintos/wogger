@@ -19,9 +19,10 @@ angular.module('wogger.auth',
 
 angular.module('wogger.auth').factory 'authorization',
 ($rootScope, $http, configuration, $localStorage,
-$sessionStorage, userApi, api) ->
+$sessionStorage, userApi, api, Parse) ->
 
   logout: ->
+    Parse.auth.logout()
     delete $rootScope.user
     delete $rootScope.token
     delete $localStorage.token
@@ -31,12 +32,11 @@ $sessionStorage, userApi, api) ->
     !!$rootScope.token
 
   loadUser: ->
-    userApi.getUser().success (data) ->
-      $rootScope.user = data
+    $rootScope.user = userApi.getUser()
 
   loadToken: ->
     $rootScope.token = $localStorage.token || $sessionStorage.token
-    api.init($rootScope.token)
+    # api.init($rootScope.token)
 
   setToken: (token, local) ->
     if local
