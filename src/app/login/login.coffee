@@ -1,6 +1,6 @@
 angular.module('wogger.login', [
-  'ui.router',
-  'wogger.auth',
+  'ui.router'
+  'wogger.auth'
   'wogger.api'
 ]).config(config = ($stateProvider) ->
   $stateProvider.state "public.login",

@@ -1,5 +1,5 @@
 angular.module('wogger.auth',
-               ['wogger.api', 'base64']).config ($stateProvider) ->
+               ['wogger.api']).config ($stateProvider) ->
   $stateProvider.state 'public',
     abstract: true
     template: "<ui-view/>"
@@ -18,8 +18,8 @@ angular.module('wogger.auth',
       public: false
 
 angular.module('wogger.auth').factory 'authorization',
-($rootScope, $http, configuration, $localStorage,
-$sessionStorage, userApi, api, Parse) ->
+($rootScope, $http, $localStorage,
+$sessionStorage, userApi, Parse) ->
 
   logout: ->
     Parse.auth.logout()
@@ -36,7 +36,6 @@ $sessionStorage, userApi, api, Parse) ->
 
   loadToken: ->
     $rootScope.token = $localStorage.token || $sessionStorage.token
-    # api.init($rootScope.token)
 
   setToken: (token, local) ->
     if local
@@ -44,9 +43,3 @@ $sessionStorage, userApi, api, Parse) ->
     else
       $sessionStorage.token = token
     this.loadToken()
-
-angular.module('wogger.auth').factory 'api', ($http, Base64) ->
-  init:  (token) ->
-    if token
-      encoded = Base64.encode(token + ':dummy')
-      $http.defaults.headers.common.Authorization = 'Basic ' + encoded

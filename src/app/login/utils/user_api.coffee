@@ -1,6 +1,5 @@
 angular.module('wogger.api', [])
-.factory 'userApi', ($http, configuration, Parse) ->
-  url = configuration.apiUrl
+.factory 'userApi', ($http, Parse) ->
 
   login: (credentials) ->
     Parse.auth.login(credentials.username, credentials.password)

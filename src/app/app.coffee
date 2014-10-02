@@ -2,7 +2,6 @@ angular.module('wogger', [
   'templates-app'
   'templates-common'
   'wogger.projects'
-  'wogger.config'
   'wogger.timer'
   'wogger.login'
   'wogger.signup'
@@ -13,11 +12,9 @@ angular.module('wogger', [
   'ngStorage'
   'Parse'
 ]).config(myAppConfig = ($stateProvider, $urlRouterProvider,
-                         $httpProvider, RestangularProvider,
-                         configuration, ParseProvider) ->
+                         $httpProvider, ParseProvider) ->
   $httpProvider.responseInterceptors.push('httpInterceptor')
-  $urlRouterProvider.otherwise('/timer')
-  RestangularProvider.setBaseUrl(configuration.apiUrl)
+  $urlRouterProvider.otherwise('/projects')
   ParseProvider.initialize(
     'dHi2yhcugrWZaWrsRs51GUi5CT6SMZeEALQj8rLM',
     'epxaxjelF2GK7xqHsKXmcukgYBuvWjOV8mwcR5IQ'
@@ -32,7 +29,7 @@ angular.module('wogger', [
     if authorization.isLoggedIn() is toState.data.public
       # event.preventDefault()
       if authorization.isLoggedIn()
-        $state.go 'user.timer'
+        $state.go 'user.projects'
       else
         # Logout case
         $state.go 'public.login'
